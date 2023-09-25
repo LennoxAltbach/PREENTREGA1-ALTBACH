@@ -1,0 +1,22 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    background-image: url("../img/pesos.jpg"); 
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container h1 {
+    color: rgba(255, 0, 0, 0.993); 
+    font-weight: 4rem;
+  }
+  
