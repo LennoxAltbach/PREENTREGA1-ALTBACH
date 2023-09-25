@@ -16,7 +16,12 @@ body, html {
   }
   
   .container h1 {
-    color: rgba(255, 0, 0, 0.993); 
+    color: red; 
     font-weight: 4rem;
   }
-  
+  button{
+     width: 150px;
+     height: 40px;
+     font-size: 2rem;
+     border-radius: 5px;
+  }
