@@ -1,5 +1,5 @@
 function convertirMoneda() {
-    alert("Bienvenido al conversor de moneda, cambia tus pesos a la moneda que eligas");
+    alert("Bienvenido al conversor de moneda, cambia tus pesos a la moneda que elijas");
   
     const cantidadDinero = parseFloat(prompt("Por favor, ingresa la cantidad de dinero:"));
     if (isNaN(cantidadDinero)) {
@@ -7,29 +7,33 @@ function convertirMoneda() {
       return;
     }
   
-    const opcion = parseInt(prompt("Elige una opción:\n1. Convertir a dólares (735)\n2. Convertir a euros (788)\n3. Convertir a reales (100)"));
+    const opcion = parseInt(prompt("Elige una opción:\n1. Convertir a dólares $\n2. Convertir a euros €\n3. Convertir a reales R  "));
   
-    let resultado;
-    switch (opcion) {
-      case 1:
-        resultado = cantidadDinero / 735;
-        alert("El monto en dólares es $ " + resultado);
-        break;
-      case 2:
-        resultado = cantidadDinero / 788;
-        alert("El monto en euros es € " + resultado);
-        break;
-      case 3:
-        resultado = cantidadDinero / 100;
-        alert("El monto en reales es R " + resultado);
-        break;
-      default:
-        alert("Opción incorrecta. Recarga la página e intenta nuevamente.");
-        return;
+    if (opcion >= 1 && opcion <= 3) {
+      let resultado;
+  
+      switch (opcion) {
+        case 1:
+          resultado = cantidadDinero / 1025;
+          break;
+        case 2:
+          resultado = cantidadDinero / 1114; 
+          break;
+        case 3:
+          resultado = cantidadDinero / 100;
+          break;
+      }
+  
+      const resultadoRedondeado = Math.round(resultado);
+  
+      let mensajeRedondeo = resultadoRedondeado > resultado ? "se redondeó hacia arriba" : "se redondeó hacia abajo";
+  
+      alert(`El monto en la moneda seleccionada es: ${resultadoRedondeado}. (${mensajeRedondeo})`);
+      alert("Gracias por usar nuestro conversor de moneda");
+    } else {
+      alert("Opción incorrecta. vuelve a tocar el boton.");
     }
-  
-    alert("Gracias por usar nuestro conversor de moneda");
   }
   
-let button =  document.getElementById("conversor");
-button.onclick = convertirMoneda;
+  let button = document.getElementById("conversor");
+  button.onclick = convertirMoneda;
