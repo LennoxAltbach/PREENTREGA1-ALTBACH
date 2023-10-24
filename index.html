@@ -9,8 +9,20 @@
 </head>
 <body>
     <div class="container">
-        <button id="conversor">convertir</button>
-      <h1>CONVERSOR DE PESOS</h1>
+        <h1>CONVERSOR DE PESOS</h1>
+        <div class="input-container">
+            <select class="dinero" id="moneda">
+                <option  value="">Elige una moneda</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <input class="dinero" type="number" id="cantidadDinero" placeholder="Cantidad en pesos">
+        </div>
+        <div class="input-container">
+            <button id="convertir" class="button">Convertir</button>
+        </div>
+        <p id="resultado" class="resultado"></p>
+        <ul id="listaConversiones" class="lista-conversiones"></ul>
     </div>
 </body>
 </html>

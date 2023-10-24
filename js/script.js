@@ -1,62 +1,70 @@
+const historialMaximo = 10;
 const monedas = [
-  { nombre: 'Dólares', tasaCambio: 1000 },
-  { nombre: 'Euros', tasaCambio: 1100 },
-  { nombre: 'Reales', tasaCambio: 120 }
+  { nombre: 'Dólares', rangoMin: 950, rangoMax: 1035 },
+  { nombre: 'Euros', rangoMin: 1000, rangoMax: 1100 },
+  { nombre: 'Reales', rangoMin: 100, rangoMax: 135 }
 ];
 
-const historialConversiones = [];
+const historialConversiones = JSON.parse(localStorage.getItem("historialConversiones")) || [];
+
+const monedaSelect = document.getElementById("moneda");
+const cantidadDineroInput = document.getElementById("cantidadDinero");
+const resultado = document.getElementById("resultado");
+const listaConversiones = document.getElementById("listaConversiones");
 
 function mostrarOpcionesMonedas() {
-  console.log('Opciones de monedas:');
   monedas.forEach((moneda, index) => {
-    console.log(`${index + 1}. Convertir a ${moneda.nombre}`);
+    const option = document.createElement("option");
+    option.value = moneda.nombre;
+    option.textContent = `Convertir a ${moneda.nombre}`;
+    monedaSelect.appendChild(option);
   });
 }
 
-function calcularResultado(cantidad, tasaCambio) {
-  return cantidad / tasaCambio;
-}
-
 function mostrarHistorial() {
-  console.log('Historial de conversiones:');
-  historialConversiones.forEach((conversion, index) => {
-    console.log(`${index + 1}. Convertido a ${conversion.moneda}: ${conversion.cantidad} pesos = ${conversion.resultado} ${conversion.moneda}`);
+  listaConversiones.innerHTML = "";
+  const historialMostrado = historialConversiones.slice(-historialMaximo); // Obtener los elementos más recientes
+
+  historialMostrado.forEach((conversion, index) => {
+    const li = document.createElement("li");
+    li.textContent = `Convertido a ${conversion.moneda}: ${conversion.cantidad} pesos = ${conversion.resultado} ${conversion.moneda}`;
+    listaConversiones.appendChild(li);
   });
 }
 
 function convertirMoneda() {
-  alert("Bienvenido al conversor de moneda, cambia tus pesos a la moneda que elijas");
+  const cantidadDinero = parseFloat(cantidadDineroInput.value);
+  const opcion = monedaSelect.value;
 
-  const cantidadDinero = parseFloat(prompt("Por favor, ingresa la cantidad de dinero:"));
-  if (isNaN(cantidadDinero)) {
-    alert("Debe ingresar un número válido. Recarga la página e intenta nuevamente.");
-    return;
-  }
+  if (isNaN(cantidadDinero) || !opcion) {
+    resultado.textContent = "Por favor, ingresa una cantidad válida y elige una moneda.";
+    resultado.style.display = "block";
+  } else {
+    const monedaSeleccionada = monedas.find((moneda) => moneda.nombre === opcion);
+    const cantidadAleatoria = parseFloat(
+      (Math.random() * (monedaSeleccionada.rangoMax - monedaSeleccionada.rangoMin) + monedaSeleccionada.rangoMin).toFixed(2)
+    );
+    const resultadoConversion = cantidadDinero  / cantidadAleatoria;
 
-  mostrarOpcionesMonedas();
-
-  const opcion = parseInt(prompt("Elige una opción:\n1. Convertir a dólares $\n2. Convertir a euros €\n3. Convertir a reales R  "));
-  if (opcion >= 1 && opcion <= 3) {
-    const monedaSeleccionada = monedas[opcion - 1];
-    const resultado = cantidadDinero / monedaSeleccionada.tasaCambio;
-
-    const resultadoRedondeado = Math.round(resultado);
-    let mensajeRedondeo = resultadoRedondeado > resultado ? "se redondeó hacia arriba" : "se redondeó hacia abajo";
-
-    alert(`El monto en ${monedaSeleccionada.nombre} es: ${resultadoRedondeado}. (${mensajeRedondeo})`);
+    resultado.textContent = `El monto en ${monedaSeleccionada.nombre} es: ${resultadoConversion.toFixed(2)}`;
+    resultado.style.display = "block";
 
     historialConversiones.push({
       moneda: monedaSeleccionada.nombre,
       cantidad: cantidadDinero,
-      resultado: resultadoRedondeado
+      resultado: resultadoConversion,
     });
 
+    localStorage.setItem("historialConversiones", JSON.stringify(historialConversiones));
+
     mostrarHistorial();
-    alert("Gracias por usar nuestro conversor de moneda");
-  } else {
-    alert("Opción incorrecta. Vuelve a tocar el botón.");
   }
 }
 
-let button = document.getElementById("conversor");
-button.onclick = convertirMoneda;
+document.addEventListener("DOMContentLoaded", function () {
+  const convertirButton = document.getElementById("convertir");
+  convertirButton.addEventListener("click", convertirMoneda);
+
+  mostrarOpcionesMonedas();
+  mostrarHistorial();
+});

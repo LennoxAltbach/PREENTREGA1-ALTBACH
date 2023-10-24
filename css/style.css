@@ -1,27 +1,66 @@
 body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    background-image: url("../img/pesos.jpg"); 
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .container h1 {
-    color: red; 
-    font-weight: 4rem;
-  }
-  button{
-     width: 150px;
-     height: 40px;
-     font-size: 2rem;
-     border-radius: 5px;
-  }
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.container {
+  background-image: url("../img/pesos.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.input-container {
+  margin: 10px;
+}
+
+.input {
+  width: 350px;
+  height: 40px;
+  font-size: 1rem;
+  padding: 10px;
+}
+.dinero{
+  width: 180px;
+  height: 30px;
+  background-color: rgba(8, 8, 8, 0.692);
+  color: rgb(236, 234, 234);
+}
+.button {
+  width: 150px;
+  height: 40px;
+  font-size: 1rem;
+  background-color: #0074e4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.resultado {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: none;
+  color: rgba(5, 5, 5, 0.993);
+  background-color: rgba(252, 255, 255, 0.76);
+}
+
+.lista-conversiones {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-conversiones li {
+  margin: 5px;
+  font-size: 1.3rem;
+  color: rgba(5, 5, 5, 0.993);
+  background-color: rgba(252, 255, 255, 0.76);
+}
