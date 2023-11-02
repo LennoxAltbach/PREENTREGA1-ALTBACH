@@ -1,4 +1,4 @@
-const historialMaximo = 10;
+const historialMaximo = 6;
 const monedas = [
   { nombre: 'Dólares', rangoMin: 950, rangoMax: 1035 },
   { nombre: 'Euros', rangoMin: 1000, rangoMax: 1100 },

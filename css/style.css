@@ -2,7 +2,6 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
 }
 
 .container {
@@ -59,8 +58,11 @@ body, html {
 }
 
 .lista-conversiones li {
-  margin: 5px;
+  margin: 10px;
   font-size: 1.3rem;
   color: rgba(5, 5, 5, 0.993);
   background-color: rgba(252, 255, 255, 0.76);
+}
+::placeholder{
+  font-size: 15px;
 }
