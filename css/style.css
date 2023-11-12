@@ -66,3 +66,7 @@ body, html {
 ::placeholder{
   font-size: 15px;
 }
+.tamaño-menor{
+  width: 350px;
+  font-size: 14px;
+}
