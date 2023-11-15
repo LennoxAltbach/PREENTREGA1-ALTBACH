@@ -1,0 +1,9 @@
+{
+    "monedas": [
+      { "nombre": "Dólar Blue", "rangoMin": 950, "rangoMax": 1035 },
+      { "nombre": "Euros", "rangoMin": 1000, "rangoMax": 1100 },
+      { "nombre": "Reales", "rangoMin": 90, "rangoMax": 135 },
+      { "nombre": "Pesos Chilenos", "rangoMin": 60, "rangoMax": 100 },
+      { "nombre": "Pesos Uruguayos", "rangoMin": 50, "rangoMax": 70 }
+    ]
+  }
